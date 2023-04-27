@@ -1,0 +1,28 @@
+{
+  "name": "puppet-jamf",
+  "version": "0.1.0",
+  "author": "Encore Technologies",
+  "summary": "Installs and configures jamf",
+  "license": "Apache-2.0",
+  "source": "https://github.com/EncoreTechnologies/puppet-jamf",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 7.17.0 < 8.0.0"
+    }
+  ],
+  "pdk-version": "2.7.1",
+  "template-url": "pdk-default#2.5.0",
+  "template-ref": "tags/2.5.0-0-g369d483"
+}

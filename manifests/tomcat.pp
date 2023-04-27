@@ -1,0 +1,41 @@
+# @summary Manages tomcat service
+# @api private
+class jamf::tomcat (
+  $java_opts       = $jamf::java_opts,
+  $organization    = $jamf::organization,
+  $activation_code = $jamf::activation_code,
+  $username        = $jamf::username,
+  $password        = $jamf::password
+) {
+  file_line { 'java_tomcat_setenv.sh':
+    path   => '/usr/local/jss/tomcat/bin/setenv.sh',
+    line   => "export JAVA_OPTS=\"${java_opts}\"",
+    match  => '^export JAVA_OPTS=',
+    notify => Service['jamf.tomcat8'],
+  }
+
+  service { 'jamf.tomcat8':
+    ensure => running,
+    enable => true,
+  }
+
+  # note: if you use the title 'jamf' here all of the resources below will be
+  #       auto-required automatically, if you use a different name you can pass in
+  #       the conn_validator => 'xxx' argument to each resource to specify the different
+  #       title.
+  jamf_conn_validator { 'jamf': }
+
+  # restart tomcat here so the API responds post initialization
+  jamf_initialize { $organization:
+    ensure          => present,
+    activation_code => $activation_code,
+    api_username    => $username,
+    api_password    => $password,
+    require         => Jamf_Conn_Validator['jamf'],
+    notify          => Service['jamf.tomcat8'],
+  }
+
+  jamf_conn_validator { 'wait_for_tomcat':
+    require => Jamf_initialize[$organization],
+  }
+}
