@@ -4,8 +4,8 @@ class jamf::install (
   $jamf_owner     = $jamf::owner,
   $jamf_group     = $jamf::group,
   $install_dir    = $jamf::install_dir,
-  $installer_name = $jamf::installer_name
-  $installer_path = $jamf::installer_path
+  $installer_name = $jamf::installer_name,
+  $installer_path = $jamf::installer_path,
 ) {
   ## Create install directory
   file { $install_dir:
@@ -20,7 +20,6 @@ class jamf::install (
     ensure => file,
     path   => "${install_dir}/${installer_name}",
     source => "${installer_path}/${installer_name}",
-    # source => "puppet:///modules/jamf/${installer}",
     owner  => $jamf_owner,
     group  => $jamf_group,
     mode   => '0755',

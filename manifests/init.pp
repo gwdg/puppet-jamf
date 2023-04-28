@@ -18,14 +18,18 @@
 #
 #   @note Used only for on-prem servers.
 #
-# @param installer
-#   The name of the Jamf Pro installer.
-#
-#   @note Used only for on-prem servers. You are expected to use the Linux
-#   jamfproinstaller.run file downloaded direct from account.jamf.com.
-#
 # @param install_dir
 #   The directory in which the Jamf Pro installer will be cached.
+#
+#   @note Used only for on-prem servers
+#
+# @param installer_name
+#   param description goes here.
+#
+#   @note Used only for on-prem servers
+#
+# @param installer_path
+#   param description goes here.
 #
 #   @note Used only for on-prem servers
 #
@@ -106,8 +110,9 @@ class jamf (
   String            $owner                                 = 'jamf',
   String            $group                                 = '0',
   Optional[Hash]    $db                                    = undef,
-  String            $installer                             = 'jamfproinstaller-10.42.1-t1667311080.run',
   String            $install_dir                           = '/opt/jamf',
+  String            $installer_name                        = undef,
+  String            $installer_path                        = undef,
   Optional[String]  $java_opts                             = undef,
   String            $max_backup_age                        = '+30',
   Optional[String]  $organization                          = undef,
