@@ -1,10 +1,4 @@
-# jamf puppet module
-
-Welcome to your new module. A short overview of the generated parts can be found
-in the [PDK documentation][1].
-
-The README template below provides a starting point with details about what
-information to include in your README.
+# Jamf module for Puppet
 
 ## Table of Contents
 
@@ -31,7 +25,7 @@ This module is currently only tested on:
 
 * Installs and configures mysql to create jamf database.
 * Configures firewall ports for jamf installer.
-* Tomcat service.
+* Jamf tomcat service.
 
 ### Beginning with jamf
 
@@ -41,10 +35,10 @@ Notice that you will need to provide your own jamf pro installer in order for th
 
 ```puppet
 class {'jamf':
-  db              = undef,
+  db              = 'example_db,
   installer_name  = 'example_installer_name',
   installer_path  = 'example_installer_path',
-  java_opts       = 'JAVA_OPTS -example,
+  java_opts       = 'JAVA_OPTS -example',
   organization    = 'example_org',
   activation_code = 'example_code',
   username        = 'example_user',
@@ -57,15 +51,17 @@ class {'jamf':
 
 ## Usage
 
-If you already have jamf installed or you are dealing with a jamf cloud server and you are just looking for configuration
-options, you can utilize this module's custom types and providers. Below are the steps needed to
-configure both your jamf and jamf cloud servers respectively. You can take a look at more info regarding specific types
-and providers in the [Reference](#reference) section.
+If you already have jamf installed or you are dealing with a jamf cloud server and you
+are just looking for configuration options, you can utilize this module's custom types
+and providers. Below are the steps needed to configure both your jamf and jamf cloud servers
+respectively. You can take a look at more info regarding specific types and providers
+in the [Reference](#reference) section.
 
 ### Jamf Servers
 
-You will first need to initialize the module by calling it as described in the [Beginning with jamf](#beginning-with-jamf) section.
-After that you can call the custom resources as needed to configure your jamf server.
+You will first need to initialize the module by calling it as described in the
+[Beginning with jamf](#beginning-with-jamf) section. After that you can call
+the custom resources as needed to configure your jamf server.
 
 ### Jamf Cloud Servers
 
@@ -81,4 +77,4 @@ You can then use the custom resources to configure your cloud jamf server as nee
 
 ## Reference
 
-Reference section has been moved to the [Reference.MD](https://github.com/EncoreTechnologies/puppet-jamf/blob/master/Reference.md) file.
+Reference section has been moved to the [Reference.MD](https://github.com/EncoreTechnologies/puppet-jamf/blob/master/REFERENCE.md) file.
