@@ -4,7 +4,9 @@
   "author": "Encore Technologies",
   "summary": "Installs and configures jamf",
   "license": "Apache-2.0",
-  "source": "https://github.com/EncoreTechnologies/puppet-jamf",
+  "source": "https://github.com/EncoreTechnologies/puppet-jamf.git",
+  "project_page": "https://github.com/EncoreTechnologies/puppet-jamf",
+  "issues_url": "https://github.com/EncoreTechnologies/puppet-jamf/issues",
   "dependencies": [
 
   ],
