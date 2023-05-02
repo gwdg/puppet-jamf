@@ -158,6 +158,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read AirPlay Permissions',
         'Read Allowed File Extension',
         'Read_API_Integrations',
+        'Read API Roles',
         'Read Attachment Assignments',
         'Read Device Enrollment Program Instances',
         'Read Buildings',
@@ -186,6 +187,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read Inventory Preload Records',
         'Read VPP Invitations',
         'Read Jamf Connect Deployments',
+        'Read Jamf Content Distribution Server Files',
         'Read Jamf Protect Deployments',
         'Read Accounts',
         'Read JSON Web Token Configuration',
@@ -196,6 +198,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read macOS Configuration Profiles',
         'Read Maintenance Pages',
         'Read Managed Preference Profiles',
+        'Read Managed Software Update Plans',
         'Read Mobile Device Applications',
         'Read iOS Configuration Profiles',
         'Read Mobile Device Enrollment Invitations',
@@ -232,7 +235,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read User Extension Attributes',
         'Read User',
         'Read VPP Assignment',
-        'Read Volume Purchasing Administrator Accounts',
+        'Read Volume Purchasing Locations',
         'Read Webhooks',
       ]
       @jss_object_privilege_array = read_jss_objects.concat(resource[:jss_object_privileges])
