@@ -35,14 +35,14 @@ Notice that you will need to provide your own jamf pro installer in order for th
 
 ```puppet
 class {'jamf':
-  db              = 'example_db,
+  db              = 'example_db',
   installer_name  = 'example_installer_name',
   installer_path  = 'example_installer_path',
   java_opts       = 'JAVA_OPTS -example',
   organization    = 'example_org',
   activation_code = 'example_code',
   username        = 'example_user',
-  password        = 'example_pass,
+  password        = 'example_pass',
   is_cloud        = false,
   mysql_root_pass = 'example_mysql_pass',
   mysql_version   = 'example_mysql_version',
