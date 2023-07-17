@@ -1,14 +1,14 @@
 # @summary Installs and configures mysql on target host
 # @api private
 class jamf::mysql (
-  $db            = $jamf::db,
-  $overrides     = $jamf::mysql_overrides,
-  $root_pass     = $jamf::mysql_root_pass,
-  $version       = $jamf::mysql_version,
-  $os_arch       = $jamf::os_arch,
-  $os_version    = $jamf::os_version,
-  $repo_base_url = $jamf::repo_base_url,
-  $repo_gpgkey   = $jamf::repo_gpgkey,
+  Optional[Hash]   $db            = $jamf::db,
+  Optional[Hash]   $overrides     = $jamf::mysql_overrides,
+  Optional[String] $root_pass     = $jamf::mysql_root_pass,
+  Optional[String] $version       = $jamf::mysql_version,
+  String           $os_arch       = $jamf::os_arch,
+  String           $os_version    = $jamf::os_version,
+  String           $repo_base_url = $jamf::repo_base_url,
+  String           $repo_gpgkey   = $jamf::repo_gpgkey,
 ) {
   # Set final MySQL repo URL
   $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
