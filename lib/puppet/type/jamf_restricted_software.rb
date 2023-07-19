@@ -72,7 +72,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Scoped Computers are expected to be a Hash, given: #{value.class.name}"
@@ -115,7 +115,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Scoped Computer Groups are expected to be a Hash, given: #{value.class.name}"
@@ -158,7 +158,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Scoped Buildings are expected to be a Hash, given: #{value.class.name}"
@@ -201,7 +201,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Scoped Departments are expected to be a Hash, given: #{value.class.name}"
@@ -244,7 +244,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Excluded Computers are expected to be a Hash, given: #{value.class.name}"
@@ -287,7 +287,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Excluded Computer Groups are expected to be a Hash, given: #{value.class.name}"
@@ -330,7 +330,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Excluded Buildings are expected to be a Hash, given: #{value.class.name}"
@@ -373,7 +373,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Excluded Departments are expected to be a Hash, given: #{value.class.name}"
@@ -416,7 +416,7 @@ Puppet::Type.newtype(:jamf_restricted_software) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Excluded Users are expected to be a Hash, given: #{value.class.name}"

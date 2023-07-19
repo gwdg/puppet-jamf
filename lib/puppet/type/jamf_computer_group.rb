@@ -30,7 +30,7 @@ Puppet::Type.newtype(:jamf_computer_group) do
     isrequired
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Criteria is expected to be a Hash, given: #{value.class.name}"

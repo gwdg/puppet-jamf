@@ -1,11 +1,11 @@
 # @summary Manages tomcat service
 # @api private
 class jamf::tomcat (
-  $java_opts       = $jamf::java_opts,
-  $organization    = $jamf::organization,
-  $activation_code = $jamf::activation_code,
-  $username        = $jamf::username,
-  $password        = $jamf::password
+  Optional[String] $java_opts       = $jamf::java_opts,
+  Optional[String] $organization    = $jamf::organization,
+  Optional[String] $activation_code = $jamf::activation_code,
+  Optional[String] $username        = $jamf::username,
+  Optional[String] $password        = $jamf::password
 ) {
   file_line { 'java_tomcat_setenv.sh':
     path   => '/usr/local/jss/tomcat/bin/setenv.sh',

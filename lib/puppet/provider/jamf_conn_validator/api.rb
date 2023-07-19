@@ -52,14 +52,16 @@ Puppet::Type.type(:jamf_conn_validator).provide(:api) do
   end
 
   def attempt_connection
+    is_connected = true
+
     response = http_client.get(health_check_url)
     unless response.is_a?(Net::HTTPSuccess)
       Puppet.notice "Unable to connect to JAMF server (#{health_check_url}): [#{response.code}] #{response.msg}"
-      return false
+      is_connected = false
     end
-    return true
+    is_connected
   rescue Exception => e # rubocop:disable Lint/RescueException
     Puppet.notice "Unable to connect to JAMF server (#{health_check_url}): #{e.message}"
-    return false
+    is_connected
   end
 end

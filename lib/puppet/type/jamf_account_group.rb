@@ -17,7 +17,7 @@ Puppet::Type.newtype(:jamf_account_group) do
   end
 
   newproperty(:ldap_server) do
-    desc "Name of the configured LDAP server the group belongs to"
+    desc 'Name of the configured LDAP server the group belongs to'
 
     defaultto ''
 
@@ -78,7 +78,7 @@ Puppet::Type.newtype(:jamf_account_group) do
     desc 'An array of JSS Object Privileges for the account.'
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(String)
         raise ArgumentError, "JSS Object Privileges are expected to be a String, given: #{value.class.name}"
@@ -112,7 +112,7 @@ Puppet::Type.newtype(:jamf_account_group) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(String)
         raise ArgumentError, "JSS Settings Privileges are expected to be a String, given: #{value.class.name}"
@@ -146,7 +146,7 @@ Puppet::Type.newtype(:jamf_account_group) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(String)
         raise ArgumentError, "JSS Actions Privileges are expected to be a String, given: #{value.class.name}"
@@ -180,7 +180,7 @@ Puppet::Type.newtype(:jamf_account_group) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(String)
         raise ArgumentError, "Casper Admin Privileges are expected to be a String, given: #{value.class.name}"

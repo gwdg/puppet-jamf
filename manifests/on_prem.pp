@@ -1,7 +1,7 @@
 # @summary Manages the jamf service for on premises jamf servers
 # @api private
 class jamf::on_prem (
-  $max_backup_age = $jamf::max_backup_age
+  String $max_backup_age = $jamf::max_backup_age
 ) {
   # contain everything and then order at bottom
   contain jamf::mysql

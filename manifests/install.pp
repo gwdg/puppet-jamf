@@ -1,11 +1,11 @@
 # @summary Installs jamf using jamf pro installer
 # @api private
 class jamf::install (
-  $jamf_owner     = $jamf::owner,
-  $jamf_group     = $jamf::group,
-  $install_dir    = $jamf::install_dir,
-  $installer_name = $jamf::installer_name,
-  $installer_path = $jamf::installer_path,
+  String $jamf_owner     = $jamf::owner,
+  String $jamf_group     = $jamf::group,
+  String $install_dir    = $jamf::install_dir,
+  String $installer_name = $jamf::installer_name,
+  String $installer_path = $jamf::installer_path,
 ) {
   ## Create install directory
   file { $install_dir:

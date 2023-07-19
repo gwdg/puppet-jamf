@@ -143,9 +143,10 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
 
     # find the group that matches our name
     matches = ldap_servers_list.select { |ls| ls['name'] == ldap_server }
-    if matches.size >= 1
-      @ldap_server_id = matches.first['id']
-    end
+
+    return unless matches.size >= 1
+
+    @ldap_server_id = matches.first['id']
   end
 
   def jss_object_privilege_array
@@ -277,6 +278,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read Limited Access Settings',
         'Read Retention Policy',
         'Read Mobile Device Inventory Collection',
+        'Read Onboarding Configuration',
         'Read Password Policy',
         'Read Patch Management Settings',
         'Read PKI',

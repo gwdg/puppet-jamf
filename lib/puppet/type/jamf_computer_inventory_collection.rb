@@ -142,7 +142,7 @@ Puppet::Type.newtype(:jamf_computer_inventory_collection) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Custom Search Paths are expected to be a Hash, given: #{value.class.name}"
@@ -190,7 +190,7 @@ Puppet::Type.newtype(:jamf_computer_inventory_collection) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Custom Search Paths are expected to be a Hash, given: #{value.class.name}"
@@ -238,7 +238,7 @@ Puppet::Type.newtype(:jamf_computer_inventory_collection) do
     defaultto []
 
     validate do |value|
-      # note: Puppet automatically detects if the value is an array and calls this validate()
+      # NOTE: Puppet automatically detects if the value is an array and calls this validate()
       #       on each item/value within the array
       unless value.is_a?(Hash)
         raise ArgumentError, "Custom Search Paths are expected to be a Hash, given: #{value.class.name}"
