@@ -4,7 +4,7 @@ require 'json'
 require 'puppet'
 
 # Helper class for HTTP calls
-class Puppet::XHTTPHelper
+class Puppet::X::HTTPHelper
   def initialize(username: nil,
                  password: nil,
                  auth_token: nil,
