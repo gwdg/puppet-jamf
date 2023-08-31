@@ -11,6 +11,13 @@ class jamf::mysql (
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
+  if $default_mysql_disable {
+    exec { 'disable_mysql_module':
+      command => 'yum module disable mysql',
+      path    => ['/bin'],
+      unless  => 'yum module list --disabled | grep mysql',
+    }
+  }
   # Set final MySQL repo URL
   $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
 
