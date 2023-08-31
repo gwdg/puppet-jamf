@@ -103,6 +103,11 @@
 #
 #   @note Used only for on-prem servers
 #
+# @param default_mysql_disable
+#   RHEL8 includes a MySQL module that is enabled by default. 
+#   Unless this module is disabled, it masks
+#   packages provided by MySQL repositories. 
+#
 # @author
 #   Encore Technologies
 #
@@ -127,7 +132,8 @@ class jamf (
   String            $os_version                            = $facts['os']['release']['major'],
   String            $repo_base_url                         = 'https://repo.mysql.com/yum',
   String            $repo_gpgkey                           = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
-) {
+  Boolean           $default_mysql_disable                 = $jamf::params::default_mysql_disable
+) inherits jamf::params {
   unless $is_cloud {
     require jamf::on_prem
   }

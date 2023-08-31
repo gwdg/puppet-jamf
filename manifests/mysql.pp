@@ -9,7 +9,7 @@ class jamf::mysql (
   String           $os_version            = $jamf::os_version,
   String           $repo_base_url         = $jamf::repo_base_url,
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
-  Boolean          $default_mysql_disable = $jamf::params::default_mysql_disable
+  Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
   # Set final MySQL repo URL
   $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
