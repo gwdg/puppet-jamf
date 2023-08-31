@@ -13,7 +13,7 @@ class jamf::mysql (
 ) {
   if $default_mysql_disable {
     exec { 'disable_mysql_module':
-      command => 'yum module disable mysql',
+      command => 'yum -y module disable mysql',
       path    => ['/bin'],
       unless  => 'yum module list --disabled | grep mysql',
     }
