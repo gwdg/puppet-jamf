@@ -1,6 +1,6 @@
 {
   "name": "puppet-jamf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Encore Technologies",
   "summary": "Installs and configures jamf",
   "license": "Apache-2.0",
@@ -14,7 +14,8 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7"
+        "7",
+        "8"
       ]
     }
   ],

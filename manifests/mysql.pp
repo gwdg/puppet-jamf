@@ -1,15 +1,23 @@
 # @summary Installs and configures mysql on target host
 # @api private
 class jamf::mysql (
-  Optional[Hash]   $db            = $jamf::db,
-  Optional[Hash]   $overrides     = $jamf::mysql_overrides,
-  Optional[String] $root_pass     = $jamf::mysql_root_pass,
-  Optional[String] $version       = $jamf::mysql_version,
-  String           $os_arch       = $jamf::os_arch,
-  String           $os_version    = $jamf::os_version,
-  String           $repo_base_url = $jamf::repo_base_url,
-  String           $repo_gpgkey   = $jamf::repo_gpgkey,
+  Optional[Hash]   $db                    = $jamf::db,
+  Optional[Hash]   $overrides             = $jamf::mysql_overrides,
+  Optional[String] $root_pass             = $jamf::mysql_root_pass,
+  Optional[String] $version               = $jamf::mysql_version,
+  String           $os_arch               = $jamf::os_arch,
+  String           $os_version            = $jamf::os_version,
+  String           $repo_base_url         = $jamf::repo_base_url,
+  String           $repo_gpgkey           = $jamf::repo_gpgkey,
+  Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
+  if $default_mysql_disable {
+    exec { 'disable_mysql_module':
+      command => 'yum -y module disable mysql',
+      path    => ['/bin'],
+      unless  => 'yum module list --disabled | grep mysql',
+    }
+  }
   # Set final MySQL repo URL
   $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
 
