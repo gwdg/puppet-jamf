@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.2
+
+- Changed "Managed Software Update Plans" to "Managed Software Updates" for Jamf 10.50 release
+
 ## Release 1.0.1
 
 - Added on-prem support for RHEL8
