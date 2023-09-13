@@ -199,7 +199,7 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read macOS Configuration Profiles',
         'Read Maintenance Pages',
         'Read Managed Preference Profiles',
-        'Read Managed Software Update Plans',
+        'Read Managed Software Updates',
         'Read Mobile Device Applications',
         'Read iOS Configuration Profiles',
         'Read Mobile Device Enrollment Invitations',
