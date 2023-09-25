@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.3
+
+- Adjusted Computer Check-in provider to match API of Jamf 11 Release
+
 ## Release 1.0.2
 
 - Changed "Managed Software Update Plans" to "Managed Software Updates" for Jamf 10.50 release
