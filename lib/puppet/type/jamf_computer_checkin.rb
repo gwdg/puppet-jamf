@@ -75,22 +75,6 @@ Puppet::Type.newtype(:jamf_computer_checkin) do
     end
   end
 
-  newproperty(:apply_computer_level_managed_preferences, boolean: true, parent: Puppet::Property::Boolean) do
-    desc 'Allow computer-level enforced Managed Preferences to be applied. This may interfere with Managed Preferences from a third-party provider.'
-
-    isrequired
-
-    defaultto true
-
-    munge do |value|
-      if @resource[:create_startup_script] == false
-        false
-      else
-        value
-      end
-    end
-  end
-
   newproperty(:ensure_ssh_is_enabled, boolean: true, parent: Puppet::Property::Boolean) do
     desc 'Enable SSH (Remote Login) on computers that have it disabled.'
 
@@ -133,54 +117,6 @@ Puppet::Type.newtype(:jamf_computer_checkin) do
 
   newproperty(:check_for_policies_at_login_logout, boolean: true, parent: Puppet::Property::Boolean) do
     desc 'Ensure that computers check for policies triggered by login or logout.'
-
-    isrequired
-
-    defaultto true
-
-    munge do |value|
-      if @resource[:create_login_logout_hooks] == false
-        false
-      else
-        value
-      end
-    end
-  end
-
-  newproperty(:apply_user_level_managed_preferences, boolean: true, parent: Puppet::Property::Boolean) do
-    desc 'Allow user-level and user-level enforced Managed Preferences to be applied. This may interfere with Managed Preferences from a third-party provider.'
-
-    isrequired
-
-    defaultto true
-
-    munge do |value|
-      if @resource[:create_login_logout_hooks] == false
-        false
-      else
-        value
-      end
-    end
-  end
-
-  newproperty(:hide_restore_partition, boolean: true, parent: Puppet::Property::Boolean) do
-    desc 'Ensure that the Restore partition is hidden at login.'
-
-    isrequired
-
-    defaultto true
-
-    munge do |value|
-      if @resource[:create_login_logout_hooks] == false
-        false
-      else
-        value
-      end
-    end
-  end
-
-  newproperty(:perform_login_actions_in_background, boolean: true, parent: Puppet::Property::Boolean) do
-    desc 'Ensure that login hook actions take place in the background to avoid delays during login. Does not apply to Managed Preferences.'
 
     isrequired
 
