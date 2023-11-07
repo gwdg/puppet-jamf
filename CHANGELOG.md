@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.4
+- Removed "Managed Preference Profiles" from Account Group permissions due to removal from the API
+
 ## Release 1.0.3
 
 - Adjusted Computer Check-in provider to match API of Jamf 11 Release
