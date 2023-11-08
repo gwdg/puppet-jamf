@@ -198,7 +198,6 @@ Puppet::Type.type(:jamf_account_group).provide(:api, parent: Puppet::Provider::J
         'Read Mac Applications',
         'Read macOS Configuration Profiles',
         'Read Maintenance Pages',
-        'Read Managed Preference Profiles',
         'Read Managed Software Updates',
         'Read Mobile Device Applications',
         'Read iOS Configuration Profiles',
