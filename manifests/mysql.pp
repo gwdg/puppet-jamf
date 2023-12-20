@@ -64,26 +64,31 @@ class jamf::mysql (
   }
 
   ## Install and configure MySQL
-  class { 'mysql::client':
-    package_name => case $facts['os']['family'] {
-      'RedHat': 'mysql-community-client',
-      'Debian': 'mysql-client',
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
-    require => case $facts['os']['family'] {
-      'RedHat': Yumrepo['mysql'],
-      'Debian': Apt::Source['mysql'],
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
+  $mysql_client_package = case $facts['os']['family'] {
+    'RedHat': { 'mysql-community-client' }
+    'Debian': { 'mysql-client' }
+    default:  { fail("Unsupported operating system: ${facts['os']['family']}") }
   }
 
+  $mysql_client_require = case $facts['os']['family'] {
+    'RedHat': { Yumrepo['mysql'] }
+    'Debian': { Apt::Source['mysql'] }
+    default:  { fail("Unsupported operating system: ${facts['os']['family']}") }
+  }
+
+  class { 'mysql::client':
+    package_name => $mysql_client_package,
+    require      => $mysql_client_require,
+  }
+
+  $mysql_package_name = case $facts['os']['family'] {
+    'RedHat': { 'mysql-community-client' }
+    'Debian': { 'mysql-client' }
+    default: { fail("Unsupported operating system: ${facts['os']['family']}") }
+  }
 
   class { 'mysql::server':
-    package_name => case $facts['os']['family'] {
-      'RedHat': 'mysql-community-client',
-      'Debian': 'mysql-client',
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
+    package_name            => $mysql_package_name,
     override_options        => $overrides,
     manage_config_file      => true,
     remove_default_accounts => true,
@@ -91,6 +96,7 @@ class jamf::mysql (
     service_name            => 'mysqld',
     require                 => Class['mysql::client'],
   }
+
 
   ## Create jamfsoftware database
   create_resources('::mysql::db', $db, {
