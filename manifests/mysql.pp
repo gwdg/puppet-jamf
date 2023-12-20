@@ -12,6 +12,15 @@ class jamf::mysql (
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
 
+  notify { "db value: ${db}":
+    message => $db,
+  }
+
+  notify { "version value: ${version}":
+    message => $version,
+  }
+
+
   # Set final MySQL repo URL
 
   case $facts['os']['family'] {
@@ -27,11 +36,11 @@ class jamf::mysql (
       ## Add external repository for MySQL
       $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
       yumrepo { 'mysql':
-        baseurl => $mysql_repo_url,
-        descr   => "MySQL ${version} Community Server",
-        enabled => true,
+        baseurl  => $mysql_repo_url,
+        descr    => "MySQL ${version} Community Server",
+        enabled  => true,
         gpgcheck => true,
-        gpgkey  => $repo_gpgkey,
+        gpgkey   => $repo_gpgkey,
       }
     }
 
