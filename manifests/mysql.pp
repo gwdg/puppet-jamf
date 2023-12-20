@@ -66,7 +66,7 @@ class jamf::mysql (
   ## Install and configure MySQL
   $mysql_client_package = case $facts['os']['family'] {
     'RedHat': { 'mysql-community-client' }
-    'Debian': { 'mysql-client' }
+    'Debian': { 'default-mysql-client' }
     default:  { fail("Unsupported operating system: ${facts['os']['family']}") }
   }
 
