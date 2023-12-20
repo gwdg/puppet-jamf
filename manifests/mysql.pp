@@ -11,79 +11,33 @@ class jamf::mysql (
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
-
+  if $default_mysql_disable {
+    exec { 'disable_mysql_module':
+      command => 'yum -y module disable mysql',
+      path    => ['/bin'],
+      unless  => 'yum module list --disabled | grep mysql',
+    }
+  }
   # Set final MySQL repo URL
+  $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
 
-  case $facts['os']['family'] {
-    'RedHat': {
-      if $default_mysql_disable {
-        exec { 'disable_mysql_module':
-          command => 'yum -y module disable mysql',
-          path   => ['/bin'],
-          unless => 'yum module list --disabled | grep mysql',
-        }
-      }
-
-      ## Add external repository for MySQL
-      $mysql_repo_url = "${repo_base_url}/mysql-${version}-community/el/${os_version}/${os_arch}/"
-      yumrepo { 'mysql':
-        baseurl => $mysql_repo_url,
-        descr   => "MySQL ${version} Community Server",
-        enabled => true,
-        gpgcheck => true,
-        gpgkey  => $repo_gpgkey,
-      }
-    }
-
-    'Debian': {
-      if $default_mysql_disable {
-        exec { 'disable_mysql_module':
-          command => 'apt-get purge mysql-server mysql-client mysql-common',
-          path   => ['/usr/bin'],
-          unless => 'dpkg -l | grep mysql',
-        }
-      }
-      #https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
-      ## Add external repository for MySQL
-      #$mysql_repo_url = "${repo_base_url}/ubuntu/dists/focal/mysql-8.0/binary-amd64/Packages"
-      $mysql_repo_url ="https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb"
-      apt::source { 'mysql':
-        location => $mysql_repo_url,
-        release => $release_name,
-        repos   => 'main',
-        key     => {
-          id    => $repo_gpgkey,
-          server => 'keyserver.ubuntu.com',
-        },
-      }
-    }
-
-    default: {
-      fail("Unsupported OS family: ${facts['os']['family']}")
-    }
+  ## Add external repository for MySQL
+  yumrepo { 'mysql':
+    baseurl  => $mysql_repo_url,
+    descr    => "MySQL ${version} Community Server",
+    enabled  => true,
+    gpgcheck => true,
+    gpgkey   => $repo_gpgkey,
   }
 
   ## Install and configure MySQL
   class { 'mysql::client':
-    package_name => case $facts['os']['family'] {
-      'RedHat': 'mysql-community-client',
-      'Debian': 'mysql-client',
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
-    require => case $facts['os']['family'] {
-      'RedHat': Yumrepo['mysql'],
-      'Debian': Apt::Source['mysql'],
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
+    package_name => 'mysql-community-client',
+    require      => Yumrepo['mysql'],
   }
 
-
   class { 'mysql::server':
-    package_name => case $facts['os']['family'] {
-      'RedHat': 'mysql-community-client',
-      'Debian': 'mysql-client',
-      default: fail("Unsupported operating system: ${facts['os']['family']}"),
-    },
+    package_name            => 'mysql-community-server',
     override_options        => $overrides,
     manage_config_file      => true,
     remove_default_accounts => true,
