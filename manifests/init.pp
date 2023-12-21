@@ -131,7 +131,12 @@ class jamf (
   String            $os_arch                               = $facts['os']['architecture'],
   String            $os_version                            = $facts['os']['release']['major'],
   String            $repo_base_url                         = 'https://repo.mysql.com/yum',
-  String            $repo_gpgkey                           = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
+  #This is for Redhat
+  #String            $repo_gpgkey                           = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
+  #The following is for apt
+  Optional[String]  $repo_gpgkey                           = undef,
+  String            $repo_gpgkey_id                        = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
+  String            $repo_gpgkey_server                    = 'pgp.mit.edu',
   Boolean           $default_mysql_disable                 = $jamf::params::default_mysql_disable
 ) inherits jamf::params {
   unless $is_cloud {
