@@ -114,7 +114,7 @@
 class jamf (
   String            $owner                                 = 'jamf',
   String            $group                                 = '0',
-  Optional[Hash]    $db                                    = {},
+  Hash              $db                                    = {},
   String            $install_dir                           = '/opt/jamf',
   String            $installer_name                        = undef,
   String            $installer_path                        = undef,
