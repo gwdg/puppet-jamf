@@ -1,7 +1,7 @@
 # @summary Installs and configures mysql on target host
 # @api private
 class jamf::mysql (
-  Optional[Hash]   $db                    = $jamf::db,
+  Hash             $db                    = $jamf::db,
   Optional[Hash]   $overrides             = $jamf::mysql_overrides,
   Optional[String] $root_pass             = $jamf::mysql_root_pass,
   Optional[String] $version               = $jamf::mysql_version,
