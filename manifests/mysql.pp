@@ -111,6 +111,6 @@ class jamf::mysql (
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb
   #notify { "db value: ${db}": }
   create_resources('::mysql::db', $db, {
-      require => Class['mysql::server'],
+      require => Class['jamf', 'mysql::server'],
   })
 }
