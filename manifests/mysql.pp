@@ -1,7 +1,7 @@
 # @summary Installs and configures mysql on target host
 # @api private
 class jamf::mysql (
-  Hash             $db                    = $jamf::db,
+  Hash             $db                    = lookup('jamf::db', Hash, undef, {}),
   Optional[Hash]   $overrides             = $jamf::mysql_overrides,
   Optional[String] $root_pass             = $jamf::mysql_root_pass,
   Optional[String] $version               = $jamf::mysql_version,
@@ -11,7 +11,6 @@ class jamf::mysql (
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable
 ) {
-
   notify { "db value: ${db}":
     message => $db,
   }

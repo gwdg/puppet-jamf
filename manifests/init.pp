@@ -140,5 +140,4 @@ class jamf (
   class { 'jamf::mysql':
     db => $db,
   }
-
 }
