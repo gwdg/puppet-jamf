@@ -137,7 +137,7 @@ class jamf (
   unless $is_cloud {
     require jamf::on_prem
   }
-  class { 'jamf::mysql':
-    db => $db,
-  }
+  # class { 'jamf::mysql':
+  #   db => $db,
+  # }
 }
