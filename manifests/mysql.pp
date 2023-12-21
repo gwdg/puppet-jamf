@@ -67,7 +67,7 @@ class jamf::mysql (
     }
 
     default: {
-      fail("Unsupported OS family: ${facts['os']['family']}")
+      fail("The ${facts['os']['family']} operating system is not supported by the jamf::mysql class")
     }
   }
 
