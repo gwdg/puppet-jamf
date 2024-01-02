@@ -6,12 +6,14 @@
 #   will live and the installer itself.
 #
 #   @note Used only for on-prem servers.
+#   @note Is the Username on the system
 #   
 # @param group
 #   The filesystem group for the directory where the Jamf Pro installer
 #   will live and the installer itself.
 #
 #   @note Used only for on-prem servers.
+#   @note Is the User's GID
 #
 # @param db
 #   The name to use for the Jamf database which will be created.

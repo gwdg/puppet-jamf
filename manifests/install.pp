@@ -8,15 +8,11 @@ class jamf::install (
   String $installer_path = $jamf::installer_path,
 ) {
   ## Create User 
-  group { $jamf_group:
-    ensure => present,
-  }
-
   user { $jamf_owner:
     ensure     => present,
     managehome => false,
     name       => $jamf_owner,
-    groups     => $jamf_group,
+    gid        => $jamf_group,
     subscribe  => Group[$jamf_group],
   }
 
