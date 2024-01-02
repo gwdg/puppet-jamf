@@ -62,6 +62,8 @@ class jamf::mysql (
         key     => {
           id    => $repo_gpgkey,
           server => 'keyserver.ubuntu.com',
+          # Note
+          # The KeyID for MySQL 8.0.28 release packages and higher is 3A79BD29. For earlier MySQL releases, the keyID is 5072E1F5. Using an incorrect key can cause a key verification error.
         },
       }
     }

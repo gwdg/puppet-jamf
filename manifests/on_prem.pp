@@ -9,7 +9,19 @@ class jamf::on_prem (
   contain jamf::install
   contain jamf::tomcat
 
-  Class['jamf::mysql'] -> Class['jamf::firewall'] -> Class['firewalld::reload'] -> Class['jamf::install'] -> Class['jamf::tomcat']
+  case $facts['os']['family'] {
+    'RedHat': {
+      Class['jamf::mysql'] -> Class['jamf::firewall'] -> Class['firewalld::reload'] -> Class['jamf::install'] -> Class['jamf::tomcat']
+    }
+    'Debian': {
+      Class['jamf::mysql'] -> Class['jamf::firewall']  -> Class['jamf::install'] -> Class['jamf::tomcat']
+      # Could not find a way to reload the Firewall with with the "puppetlabs-firewall". I think iptables dont need a reload
+    }
+    default: {
+      fail("The ${facts['os']['family']} operating system is not supported by the jamf::on_prem class")
+    }
+  }
+
 
   # Clean up backups
   cron { 'Cleanup Jamf Backups':
