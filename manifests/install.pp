@@ -13,7 +13,6 @@ class jamf::install (
     managehome => false,
     name       => $jamf_owner,
     gid        => $jamf_group,
-    subscribe  => Group[$jamf_group],
   }
 
   ## Create install directory
