@@ -7,6 +7,18 @@ class jamf::install (
   String $installer_name = $jamf::installer_name,
   String $installer_path = $jamf::installer_path,
 ) {
+  ## Create User 
+  user { $jamf_owner:
+    ensure     => present,
+    managehome => false,
+    groups     => $jamf_group,
+    require    => Group[$jamf_group],
+  }
+
+  group { $jamf_group:
+    ensure     => present,
+  }
+
   ## Create install directory
   file { $install_dir:
     ensure => directory,
