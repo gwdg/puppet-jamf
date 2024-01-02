@@ -1,4 +1,5 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '../../../../../x/http_helper.rb'))
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'jamf'))
+require 'puppet/x/http_helper'
 
 Puppet::Type.type(:jamf_conn_validator).provide(:api) do
   ##########################
