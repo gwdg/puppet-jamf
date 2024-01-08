@@ -29,6 +29,11 @@ class jamf::firewall {
         proto  => 'tcp',
         action => 'accept',
       }
+      firewall { '100 allow http and https access':
+        dport  => [80, 443],
+        proto  => 'tcp',
+        jump   => 'accept',
+      }
       # TODO: gucken ob die anderen blockiert werden
     }
     default: {
