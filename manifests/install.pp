@@ -24,13 +24,14 @@ class jamf::install (
   }
 
   ## Copy jamf PRO installer to target
-  -> file { $installer_name:
-    ensure => file,
-    path   => "${install_dir}/${installer_name}",
-    source => "${installer_path}/${installer_name}",
-    owner  => $jamf_owner,
-    group  => $jamf_group,
-    mode   => '0755',
+  file { $installer_name:
+    ensure  => file,
+    path    => "${install_dir}/${installer_name}",
+    source  => "${installer_path}/${installer_name}",
+    owner   => $jamf_owner,
+    group   => $jamf_group,
+    mode    => '0755',
+    require => File[$install_dir],
   }
 
   ## Run Jamf Installer
@@ -40,6 +41,7 @@ class jamf::install (
     command => "sudo bash ${install_dir}/${installer_name} -- -y -d",
     path    => ['/bin'],
     creates => '/usr/local/jss/bin/jamf-pro',
-    require => File[$installer_name],
+    require => File[$installer_name], #TODO wenn das nicht require nicht dann mit subscribe
+    # https://www.puppet.com/docs/puppet/7/lang_relationships.html
   }
 }

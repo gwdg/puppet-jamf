@@ -47,8 +47,8 @@ class jamf::mysql (
       if $default_mysql_disable {
         exec { 'disable_mysql_module':
           command => 'apt-get purge mysql-server mysql-client mysql-common',
-          path   => ['/usr/bin'],
-          unless => 'dpkg -l | grep mysql',
+          path    => ['/usr/bin'],
+          unless  => 'dpkg -l | grep mysql',
         }
       }
       #https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
@@ -57,10 +57,10 @@ class jamf::mysql (
       $mysql_repo_url ="https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb"
       apt::source { 'mysql':
         location => $mysql_repo_url,
-        release => $release_name,
-        repos   => 'main',
-        key     => {
-          id    => $repo_gpgkey,
+        release  => $release_name,
+        repos    => 'main',
+        key      => {
+          id     => $repo_gpgkey,
           server => 'keyserver.ubuntu.com',
           # Note
           # The KeyID for MySQL 8.0.28 release packages and higher is 3A79BD29. For earlier MySQL releases, the keyID is 5072E1F5. Using an incorrect key can cause a key verification error.

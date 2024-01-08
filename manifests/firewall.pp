@@ -29,6 +29,7 @@ class jamf::firewall {
         proto  => 'tcp',
         action => 'accept',
       }
+      # TODO: gucken ob die anderen blockiert werden
     }
     default: {
       fail("The ${facts['os']['family']} operating system is not supported by the jamf::firewall class")

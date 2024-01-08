@@ -22,7 +22,8 @@ class jamf::on_prem (
     }
   }
 
-
+# TODO: backup auf 7 tage
+# TODO: parametrisiere den pfad
   # Clean up backups
   cron { 'Cleanup Jamf Backups':
     command => "find /usr/local/jss/backups/ -mindepth 2 -maxdepth 2 -mtime ${max_backup_age} | xargs rm -rf",
