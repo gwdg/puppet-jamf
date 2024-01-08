@@ -32,7 +32,7 @@ class jamf::firewall {
       firewall { '100 allow http and https access':
         dport  => [80, 443],
         proto  => 'tcp',
-        jump   => 'accept',
+        action => 'accept',
       }
       # TODO: gucken ob die anderen blockiert werden
     }
