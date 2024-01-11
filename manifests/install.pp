@@ -31,7 +31,7 @@ class jamf::install (
     owner   => $jamf_owner,
     group   => $jamf_group,
     mode    => '0755',
-    require => File[$install_dir],
+    require => File[$install_dir], # Easier to read than a "->"
   }
 
   ## Run Jamf Installer

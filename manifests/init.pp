@@ -125,6 +125,7 @@ class jamf (
   String            $owner                                 = 'jamf',
   String            $group                                 = '0',
   Hash              $db                                    = {},
+  #db is not optional and cant be undef rather use a empty {}
   String            $install_dir                           = '/opt/jamf',
   String            $installer_name                        = undef,
   String            $installer_path                        = undef,
@@ -140,6 +141,7 @@ class jamf (
   Optional[String]  $mysql_version                         = undef,
   String            $os_arch                               = $facts['os']['architecture'],
   String            $os_version                            = $facts['os']['release']['major'],
+  # TODO: Before Merge check closly the this part below it is tricky (mysql repokey and stuff)
   String            $repo_base_url                         = 'https://repo.mysql.com/yum',
   #This is for Redhat
   #String            $repo_gpgkey                           = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
@@ -153,7 +155,4 @@ class jamf (
   unless $is_cloud {
     require jamf::on_prem
   }
-  # class { 'jamf::mysql':
-  #   db => $db,
-  # }
 }
