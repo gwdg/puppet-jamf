@@ -19,7 +19,6 @@ class jamf::mysql (
     message => $version,
   }
 
-
   # Set final MySQL repo URL
 
   case $facts['os']['family'] {
@@ -106,7 +105,6 @@ class jamf::mysql (
     service_name            => 'mysqld',
     require                 => Class['mysql::client'],
   }
-
 
   ## Create jamfsoftware database
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb

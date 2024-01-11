@@ -109,9 +109,17 @@
 #   RHEL8 includes a MySQL module that is enabled by default. 
 #   Unless this module is disabled, it masks
 #   packages provided by MySQL repositories. 
+# @param firewall
+#   Default is set to "true"
+#   But you can set the firewall to false. To disable the firewall, if your firewall is managed outside the server.
+#   
+#   @note Used only for on-prem servers
+#   
+#   
 #
 # @author
 #   Encore Technologies
+#   GWDG
 #
 class jamf (
   String            $owner                                 = 'jamf',
@@ -139,7 +147,8 @@ class jamf (
   Optional[String]  $repo_gpgkey                           = undef,
   String            $repo_gpgkey_id                        = 'https://repo.mysql.com/RPM-GPG-KEY-mysql-2022',
   String            $repo_gpgkey_server                    = 'pgp.mit.edu',
-  Boolean           $default_mysql_disable                 = $jamf::params::default_mysql_disable
+  Boolean           $default_mysql_disable                 = $jamf::params::default_mysql_disable,
+  Boolean           $firewall                              = true
 ) inherits jamf::params {
   unless $is_cloud {
     require jamf::on_prem
