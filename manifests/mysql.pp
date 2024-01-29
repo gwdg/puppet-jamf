@@ -91,8 +91,8 @@ class jamf::mysql (
   }
 
   $mysql_package_name = case $facts['os']['family'] {
-    'RedHat': { 'mysql-community-client' }
-    'Debian': { 'mysql-client' }
+    'RedHat': { 'mysql-community-server' }
+    'Debian': { 'mysql-server' }
     default: { fail("Unsupported operating system: ${facts['os']['family']}") }
   }
 
