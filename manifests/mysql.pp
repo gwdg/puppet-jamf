@@ -107,7 +107,7 @@ class jamf::mysql (
     manage_config_file      => true,
     remove_default_accounts => true,
     root_password           => $root_pass,
-    service_name            => 'mysqld',
+    service_name            => 'mysql',
     require                 => Class['mysql::client'],
   }
 
