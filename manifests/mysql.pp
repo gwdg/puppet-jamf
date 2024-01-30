@@ -11,7 +11,7 @@ class jamf::mysql (
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable,
   $username = lookup('data::jamf::username'),
-  $password = lookup('data::jamf::userpassword'),
+  $password = lookup('data::mysql::root_password'),
 ) {
   notify { "db value: ${db}":
     message => $db,
