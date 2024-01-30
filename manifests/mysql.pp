@@ -9,7 +9,7 @@ class jamf::mysql (
   String           $os_version            = $jamf::os_version,
   String           $repo_base_url         = $jamf::repo_base_url,
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
-  Boolean          $default_mysql_disable = $jamf::default_mysql_disable
+  Boolean          $default_mysql_disable = $jamf::default_mysql_disable,
   $username = lookup('data::jamf::username'),
   $password = lookup('data::jamf::userpassword'),
 ) {
