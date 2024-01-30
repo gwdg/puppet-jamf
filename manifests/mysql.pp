@@ -111,17 +111,16 @@ class jamf::mysql (
   ## Create jamfsoftware database
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb
   #$db = Hash($db)
-  $db = { 'mydb':
-    'name'     => 'jamfdatabase',
-    'user'     => $username,
-    'password' => Sensitive($password),
-    'grant'    => ['SELECT', 'UPDATE'],
-  }
-  mysql::db { 'mydb':
-    'name'     => 'jamfdatabase',
-    'user'     => $username,
-    'password' => Sensitive($password),
-    'grant'    => ['SELECT', 'UPDATE'],
+  # $db = { 'mydb':
+  #   'name'     => 'jamfdatabase',
+  #   'user'     => $username,
+  #   'password' => Sensitive($password),
+  #   'grant'    => ['SELECT', 'UPDATE'],
+  # }
+  mysql::db { 'jamfdatabase':
+    user     => $username,
+    password => Sensitive($password),
+    grant    => ['SELECT', 'UPDATE'],
     # require    => Class['jamf', 'mysql::server'],
   }
 
