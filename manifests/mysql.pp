@@ -119,7 +119,7 @@ class jamf::mysql (
   # }
   mysql::db { 'jamfdatabase':
     user     => $username,
-    password => Sensitive($password),
+    password => $password,
     grant    => ['SELECT', 'UPDATE'],
     # require    => Class['jamf', 'mysql::server'],
   }
