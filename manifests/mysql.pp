@@ -54,11 +54,11 @@ class jamf::mysql (
       }
       #https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
       ## Add external repository for MySQL
+      include apt
       #$mysql_repo_url = "${repo_base_url}/ubuntu/dists/focal/mysql-8.0/binary-amd64/Packages"
-      $mysql_repo_url ="https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb"
+      $mysql_repo_url ="https://downloads.mysql.com/archives/get/p/23/file/libmysqlclient21_8.0.33-1ubuntu22.04_amd64.deb"
       apt::source { 'mysql':
         location => $mysql_repo_url,
-        release  => $release_name,
         repos    => 'main',
         key      => {
           id     => $repo_gpgkey,
@@ -117,7 +117,10 @@ class jamf::mysql (
   #   'password' => Sensitive($password),
   #   'grant'    => ['SELECT', 'UPDATE'],
   # }
+  # Big time issues with the $db hash it just wont be a hash here anymore idk how and why
+  # thats why to do this in this way
   mysql::db { 'jamfdatabase':
+    ensure   => present,
     user     => $username,
     password => $password,
     grant    => ['SELECT', 'UPDATE'],
