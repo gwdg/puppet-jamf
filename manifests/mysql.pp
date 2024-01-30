@@ -109,8 +109,8 @@ class jamf::mysql (
   ## Create jamfsoftware database
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb
   notify { "db value: ${db}": }
-  validate_hash($db)
   Hash($db)
+  validate_hash($db)
   create_resources('::mysql::db', $db, {
       require => Class['jamf', 'mysql::server'],
   })
