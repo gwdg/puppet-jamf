@@ -10,6 +10,8 @@ class jamf::mysql (
   String           $repo_base_url         = $jamf::repo_base_url,
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable
+  $username = lookup('data::jamf::username'),
+  $password = lookup('data::jamf::userpassword'),
 ) {
   notify { "db value: ${db}":
     message => $db,
@@ -109,6 +111,12 @@ class jamf::mysql (
   ## Create jamfsoftware database
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb
   #$db = Hash($db)
+  $db = {
+    'name'     => 'jamfdatabase',
+    'user'     => $username,
+    'password' => Sensitive($password),
+    'grant'    => ['SELECT', 'UPDATE'],
+  }
   if validate_hash($db) {
     create_resources('::mysql::db', $db, {
         require => Class['jamf', 'mysql::server'],
