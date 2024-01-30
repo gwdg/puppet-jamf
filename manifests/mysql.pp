@@ -56,7 +56,7 @@ class jamf::mysql (
       ## Add external repository for MySQL
       include apt
       #$repo_base_url = "https://repo.mysql/apt"
-      $mysql_repo_url = "${repo_base_url}/ubuntu/dists/focal/mysql-8.0/binary-amd64/Packages"
+      #$mysql_repo_url = "${repo_base_url}/ubuntu/dists/focal/mysql-8.0/binary-amd64/Packages"
       #$mysql_repo_url ="https://downloads.mysql.com/archives/get/p/23/file/libmysqlclient21_8.0.33-1ubuntu22.04_amd64.deb"
       $mysql_repo_url = "https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb"
       apt::source { 'mysql':
