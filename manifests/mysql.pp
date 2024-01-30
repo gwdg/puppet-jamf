@@ -1,7 +1,7 @@
 # @summary Installs and configures mysql on target host
 # @api private
 class jamf::mysql (
-  Hash             $db                    = $jamf::db,
+  #Hash             $db                    = $jamf::db,
   Optional[Hash]   $overrides             = $jamf::mysql_overrides,
   Optional[String] $root_pass             = $jamf::mysql_root_pass,
   Optional[String] $version               = $jamf::mysql_version,
@@ -117,14 +117,18 @@ class jamf::mysql (
     'password' => Sensitive($password),
     'grant'    => ['SELECT', 'UPDATE'],
   }
-  if validate_hash($db) {
-    create_resources('::mysql::db', $db, {
-        require => Class['jamf', 'mysql::server'],
-    })
-  } else {
-    notify { "db value validate: ${db}":
-      message => validate_hash($db),
-    }
-    fail("Expected a Hash but got ${db} and ${validate_hash($db)}")
-  }
+  create_resources('::mysql::db', $db, {
+      require => Class['jamf', 'mysql::server'],
+  })
+
+  # if validate_hash($db) {
+  #   create_resources('::mysql::db', $db, {
+  #       require => Class['jamf', 'mysql::server'],
+  #   })
+  # } else {
+  #   notify { "db value validate: ${db}":
+  #     message => validate_hash($db),
+  #   }
+  #   fail("Expected a Hash but got ${db} and ${validate_hash($db)}")
+  # }
 }
