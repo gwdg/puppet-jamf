@@ -126,6 +126,7 @@ class jamf::mysql (
     ensure   => present,
     user     => $username,
     password => $password,
+    host     => 'localhost',
     grant    => ['SELECT', 'UPDATE'],
     # require    => Class['jamf', 'mysql::server'],
   }
