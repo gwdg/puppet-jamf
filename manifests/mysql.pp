@@ -109,14 +109,14 @@ class jamf::mysql (
   ## Create jamfsoftware database
   # Doku @ https://forge.puppet.com/modules/puppetlabs/mysql/reference#mysqldb
   #$db = Hash($db)
-  notify { "db value validate: ${db}":
-    message => validate_hash($db),
-  }
   if validate_hash($db) {
     create_resources('::mysql::db', $db, {
         require => Class['jamf', 'mysql::server'],
     })
   } else {
-    fail("Expected a Hash but got ${db}")
+    notify { "db value validate: ${db}":
+      message => validate_hash($db),
+    }
+    fail("Expected a Hash but got ${db} and ${validate_hash($db)}")
   }
 }
