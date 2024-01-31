@@ -103,8 +103,8 @@ class jamf::mysql (
 
   class { 'mysql::server':
     package_name            => $mysql_package_name,
-    override_options        => $overrides,
-    manage_config_file      => true,
+    #override_options        => $overrides,
+    manage_config_file      => false,
     remove_default_accounts => true,
     root_password           => $root_pass,
     # service_name            => 'mysqld', # Default is very good
