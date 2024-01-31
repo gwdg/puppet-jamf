@@ -103,7 +103,7 @@ class jamf::mysql (
 
   class { 'mysql::server':
     package_name            => $mysql_package_name,
-    override_options        => $overrides,
+    options                 => $overrides, # i dont want a merge of the options
     manage_config_file      => true,
     remove_default_accounts => true,
     root_password           => $root_pass,
