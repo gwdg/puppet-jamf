@@ -101,7 +101,7 @@ class jamf::mysql (
     default: { fail("Unsupported operating system: ${facts['os']['family']}") }
   }
 
-  class { 'mysql::server':
+  class { '::mysql::server':
     package_name            => $mysql_package_name,
     options                 => $overrides, # i dont want a merge of the options
     manage_config_file      => true,
