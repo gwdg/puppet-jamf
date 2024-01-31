@@ -10,8 +10,8 @@ class jamf::mysql (
   String           $repo_base_url         = $jamf::repo_base_url,
   String           $repo_gpgkey           = $jamf::repo_gpgkey,
   Boolean          $default_mysql_disable = $jamf::default_mysql_disable,
-  $username = lookup('data::jamf::user'),
-  $password = lookup('data::jamf::userpassword'),
+  $username = lookup('data::mysql::user'),
+  $password = lookup('data::mysql::root_password'),
 ) {
   notify { "db value: ${db}":
     message => $db,
@@ -131,11 +131,11 @@ class jamf::mysql (
     # require    => Class['jamf', 'mysql::server'],
   }
 
-  mysql_user { 'rootuser':
-    ensure        => present,
-    name          => $username,
-    password_hash => mysql::password($password),
-  }
+  # mysql_user { 'rootuser':
+  #   ensure        => present,
+  #   name          => $username,
+  #   password_hash => mysql::password($password),
+  # }
 
   # if validate_hash($db) {
   #   create_resources('::mysql::db', $db, {
