@@ -131,7 +131,7 @@ class jamf::mysql (
     # require    => Class['jamf', 'mysql::server'],
   }
 
-  mysql::mysql_user { 'rootuser':
+  mysql_user { 'rootuser':
     ensure        => present,
     name          => $username,
     password_hash => mysql::password($password),
