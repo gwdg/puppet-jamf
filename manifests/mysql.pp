@@ -124,16 +124,15 @@ class jamf::mysql (
   # thats why to do this in this way
   mysql::db { 'jamfdatabase':
     ensure   => present,
-    user     => root,
+    user     => 'root',
     password => $password,
     host     => 'localhost',
     grant    => ['SELECT', 'UPDATE'],
     # require    => Class['jamf', 'mysql::server'],
   }
 
-  mysql_user { $username:
+  mysql_user { $username'@localhost':
     ensure        => present,
-    name          => $username,
     password_hash => mysql::password($password),
   }
 
